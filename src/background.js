@@ -197,7 +197,7 @@ class Background {
       backgroundColor:
         ((appearance === undefined || appearance === 'auto') &&
           nativeTheme.shouldUseDarkColors) ||
-        appearance === 'dark'
+          appearance === 'dark'
           ? '#222'
           : '#fff',
     };
@@ -311,7 +311,12 @@ class Background {
           app.quit();
         } else {
           e.preventDefault();
-          this.window.hide();
+          if (this.window.isFullScreen()) {
+            this.window.once('leave-full-screen', () => this.window.hide());
+            this.window.setFullScreen(false);
+          } else {
+            this.window.hide();
+          }
         }
       } else {
         let closeOpt = this.store.get('settings.closeAppOption');
