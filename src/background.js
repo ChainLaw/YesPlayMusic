@@ -180,7 +180,7 @@ class Background {
       width: this.store.get('window.width') || 1440,
       height: this.store.get('window.height') || 840,
       minWidth: 1080,
-      minHeight: 720,
+      minHeight: 640,
       titleBarStyle: 'hiddenInset',
       frame: !(
         isWindows ||
@@ -242,6 +242,7 @@ class Background {
     }
 
     this.window = new BrowserWindow(options);
+    this.window.center();
 
     // hide menu bar on Microsoft Windows and Linux
     this.window.setMenuBarVisibility(false);
